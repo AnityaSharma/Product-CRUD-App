@@ -1,23 +1,29 @@
 package productcrudapp.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "product")
 public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int pid;
+	private int id;
+	@Column(name="name")
 	private String name;
-	private String desc;
+	@Column(name="description")
+	private String description;
+	@Column(name="price")
 	private long price;
-	public int getPid() {
-		return pid;
+	public int getId() {
+		return id;
 	}
-	public void setPid(int pid) {
-		this.pid = pid;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;
@@ -25,11 +31,11 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return description;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public long getPrice() {
 		return price;
@@ -37,19 +43,21 @@ public class Product {
 	public void setPrice(long price) {
 		this.price = price;
 	}
-	@Override
-	public String toString() {
-		return "Product [pid=" + pid + ", name=" + name + ", desc=" + desc + ", price=" + price + "]";
-	}
-	public Product(int pid, String name, String desc, long price) {
+	public Product(int id, String name, String description, long price) {
 		super();
-		this.pid = pid;
+		this.id = id;
 		this.name = name;
-		this.desc = desc;
+		this.description = description;
 		this.price = price;
 	}
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
+	}
+	
+	
 }
