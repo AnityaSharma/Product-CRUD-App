@@ -12,6 +12,15 @@ import productcrudapp.model.Product;
 public class ProductDao {
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
+	
+
+	public HibernateTemplate getHibernateTemplate() {
+		return hibernateTemplate;
+	}
+
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernateTemplate = hibernateTemplate;
+	}
 
 	//to create a product
 	@Transactional
