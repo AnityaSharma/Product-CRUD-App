@@ -12,7 +12,6 @@ import productcrudapp.model.Product;
 public class ProductDao {
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
-	
 
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
