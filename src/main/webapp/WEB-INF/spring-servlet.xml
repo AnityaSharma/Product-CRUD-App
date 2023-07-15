@@ -15,6 +15,7 @@
     
 	<context:component-scan base-package="productcrudapp"/>
 	
+	<!-- View Resolver -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
     name="viewResolver">
    		<property name="prefix" value="/WEB-INF/views/"/>
@@ -22,7 +23,7 @@
    </bean>
    
    
-   <!-- DataSource @Wa#tI4!$sin-->
+   <!-- DataSource -->
    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="ds">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/productcrud"/>

@@ -19,9 +19,11 @@ import productcrudapp.model.Product;
 @Controller
 public class MainController {
 	
+	//ProductDao class automatically instantiated by spring MVC
 	@Autowired
 	private ProductDao productDao;
 	
+	//Home Page
 	@RequestMapping("/first")
 	public String home(Model m) {
 		
@@ -32,13 +34,15 @@ public class MainController {
 		return "indexx";
 	}
 	
+	//handler for adding a product	
 	@RequestMapping(value="/add-product")
 	public String addProduct(Model m) {
 		m.addAttribute("title","Add Product");
 		return "addProductForm";
 	}
 	
-	@RequestMapping(value = "handle-product" ,method=RequestMethod.POST)
+	// handles the Post request for Adding and Updating the Product information
+	@RequestMapping(value = "/handle-product" ,method=RequestMethod.POST)
 	public RedirectView handleProduct(@ModelAttribute Product product,HttpServletRequest request) {
 		
 		System.out.println(product);
@@ -50,7 +54,7 @@ public class MainController {
 		return redirectView;
 	}
 	
-	//To delete a product
+	//Handles a request to Delete a product
 	@RequestMapping("/delete/{productId}")
 	public RedirectView deleteProduct(@PathVariable("productId") int productId,HttpServletRequest request) {
 		productDao.deleteProduct(productId);
@@ -59,6 +63,11 @@ public class MainController {
 		return redirectView;
 	}
 	
-	
+	//handles in Updating the Product information
+	@RequestMapping("/update/{productId}")
+	public String updateProduct(@PathVariable("productId") int productId,Model m) {
+		m.addAttribute("product_details", this.productDao.getProduct(productId));
+		return "update_form";
+	}
 
 }
