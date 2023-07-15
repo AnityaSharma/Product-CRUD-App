@@ -8,8 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import productcrudapp.model.Product;
 
+//class to do all the Operations on the Relational Database using HibernateTemplate
 @Component
 public class ProductDao {
+	
+	//HibernateTemplate object automatically instantiated by spring MVC 
+	//Configuration in /productcrudapp/src/main/webapp/WEB-INF/spring-servlet.xml 
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
 
@@ -21,22 +25,24 @@ public class ProductDao {
 		this.hibernateTemplate = hibernateTemplate;
 	}
 
-	//to create a product
+	//To Add or Update Product Object in Relational Database
 	@Transactional
 	public void createProduct(Product product) {
-		this.hibernateTemplate.save(product);
+		this.hibernateTemplate.saveOrUpdate(product);
 	}
 	
+	//To Get List of all Products stored in Relational Database
 	public List<Product> getAllProducts(){
 		return this.hibernateTemplate.loadAll(Product.class);
 	}
 	
-	//to delete a product
+	//To Delete Product Object in Relational Database
 	@Transactional
 	public void deleteProduct(int pid) {
 		this.hibernateTemplate.delete(this.hibernateTemplate.load(Product.class, pid));
 	}
 	
+	//To Get Product Object in Relational Database
 	public Product getProduct(int pid) {
 		return this.hibernateTemplate.get(Product.class,pid);
 	}
